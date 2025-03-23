@@ -1,0 +1,39 @@
+name: Luacheck and Stylua
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'colors/**/*.lua'
+      - 'lua/**/*.lua'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install luacheck
+        run: |
+          set -x
+          sudo apt-get update
+          sudo apt-get install -y luarocks
+          sudo luarocks install luacheck
+
+      - name: Run luacheck
+        run: luacheck colors lua --config .luacheckrc --formatter=plain
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run stylua
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check colors lua
