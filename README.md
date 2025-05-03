@@ -63,10 +63,41 @@ require("ascua").setup({
 
     -- Apply theme colors to terminal
     terminal_colors = true,
+
+    -- Enable transparent background
+    transparent = false,
 })
 
 -- load the theme
 vim.cmd.colorscheme("ascua")
+```
+
+Using `lazy.nvim`
+
+```lua
+{
+    "navazjm/ascua.nvim",
+    name = "ascua",
+    lazy = false,
+    priority = 1000,
+    opts = {
+        bold_styles = false,
+        color_overrides = {
+            white = "#FFFFFF",
+        },
+        group_overrides = {
+            Cursor = { fg = c.bg_primary, bg = c.fg_cursor, bold = true },
+        },
+        italic_comments = false,
+        underline_links = false,
+        terminal_colors = true,
+        transparent = false,
+    },
+    config = true,
+    init = function()
+        vim.cmd("colorscheme ascua")
+    end
+}
 ```
 
 If you are using [`lualine`](https://github.com/hoob3rt/lualine.nvim), you can also enable the provided theme:
