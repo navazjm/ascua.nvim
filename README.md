@@ -4,16 +4,18 @@
 
 ## Installation
 
-Using `vim-plug`
-
-```vim
-Plug 'navazjm/ascua.nvim'
-```
-
-Using `packer`
+Using builtin `vim.pack`: 
 
 ```lua
-use 'navazjm/ascua.nvim'
+git clone https://github.com/navazjm/ascua.nvim ~/.config/nvim/pack/nvim/start/ascua.nvim
+```
+
+**If using Neovim 0.12 (nightly)**
+
+```lua
+vim.pack.add{
+  { src = "https://github.com/navazjm/ascua.nvim" },
+}
 ```
 
 Using `lazy.nvim`
@@ -28,6 +30,18 @@ Using `lazy.nvim`
         vim.cmd("colorscheme ascua")
     end
 }
+```
+
+Using `packer`
+
+```lua
+use "navazjm/ascua.nvim"
+```
+
+Using `vim-plug`
+
+```vim
+Plug 'navazjm/ascua.nvim'
 ```
 
 ## Usage
